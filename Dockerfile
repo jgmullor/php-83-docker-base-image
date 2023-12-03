@@ -3,7 +3,7 @@ FROM php:8.3.0-fpm-alpine3.18 AS basic
 COPY --from=composer:2.5 /usr/bin/composer /usr/bin/composer
 COPY --from=mlocati/php-extension-installer:2.1.28 /usr/bin/install-php-extensions /usr/local/bin/
 COPY --from=surnet/alpine-wkhtmltopdf:3.16.2-0.12.6-full /bin/wkhtmltopdf /bin/libwkhtmltox.so /bin/
-COPY ./bin/install_datadog_extension.sh /usr/local/bin/install_datadog_extension
+COPY --chmod=777 ./bin/install_datadog_extension.sh /usr/local/bin/install_datadog_extension
 
 RUN curl -o /usr/local/etc/AmazonRootCA1.pem https://www.amazontrust.com/repository/AmazonRootCA1.pem \
     && apk update \
