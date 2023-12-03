@@ -1,13 +1,10 @@
 #!/bin/sh
 
-if [ -z $TARGETARCH ]; then
-    echo "WARNING: Docker TARGETPLATFORM not defined. Using x86_64."
-    TARGETARCH=x86_64
-fi
-
-if [ $TARGETARCH = "arm64" ]; then
+if [ `arch` = "arm64" ]; then
+    echo "Using ARM64 version of Datadog"
     wget -O datadog-php-tracer.apk https://github.com/DataDog/dd-trace-php/releases/download/0.94.1/datadog-php-tracer_0.94.1_aarch64.apk
 else
+    echo "Using ARM64 version of Datadog"
     wget -O datadog-php-tracer.apk https://github.com/DataDog/dd-trace-php/releases/download/0.94.1/datadog-php-tracer_0.94.1_x86_64.apk
 fi
 
