@@ -11,8 +11,6 @@ jobs:
       matrix:
         platform:
           - linux/amd64
-          - linux/arm/v6
-          - linux/arm/v7
           - linux/arm64
     steps:
       - name: Checkout
@@ -38,7 +36,7 @@ jobs:
           context: .
           platforms: ${{ matrix.platform }}
           labels: ${{ steps.meta.outputs.labels }}
-          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true
+          outputs: type=image,name=${{ env.REGISTRY_IMAGE }},push-by-digest=true,name-canonical=true,push=true,tags=jgmullor/php-base:latest
       - name: Export digest
         run: |
           mkdir -p /tmp/digests
